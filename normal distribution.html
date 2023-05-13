@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Normal Distribution Demo</title>
+</head>
+<body>
+	<canvas id='cv' width = 600 height=500> </canvas><br>
+	<input id="input" value=1 type="range" min=1 max=20 step=1>
+	<p id="inputVal">1 sample</p>
+	<script>
+		// Parameter : number of time random() is called
+		var RandomCalls = 1;
+		// number of attempts for the graph
+		var cnt = 40000;
+
+		//  Boilerplate
+		var canvas = document.getElementById('cv');
+		var ctx = canvas.getContext('2d');
+		var width = canvas.width;
+		var i=0;
+
+		function runTest() {
+			// init slots
+			var slots = [];
+			for (i=0; i<width; i++) slots[i]=0;
+
+			// fill slots
+			i=cnt;
+			while (i--) {
+			var  y1 = gaussianRand();
+			slots[Math.floor(y1*width)]+=1;
+			} 
+
+			function gaussianRand() {
+			var i=RandomCalls;
+			var res = 0;
+			while(i--) res+=Math.random();
+			return res/RandomCalls; 
+			}
+
+			// no p rotect
+
+			ctx.fillStyle='#F00';
+			for (i=0; i<width; i++) {
+			ctx.fillRect(i,500-slots[i], 10, slots[i]);
+			}
+		}
+		runTest();
+	</script>
+	<script>
+		let inputValElem = document.getElementById("inputVal");
+		let input = document.getElementById("input");
+		input.addEventListener("input", event => {
+			RandomCalls = input.value;
+			inputValElem.innerHTML = input.value + " sample" + (input.value != 1 ? "s" : "");
+			ctx.clearRect(0, 0, 1000, 1000)
+			runTest();
+		});
+	</script>
+</body>
+</html>
