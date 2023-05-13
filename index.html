@@ -7,7 +7,7 @@
 </head>
 <body>
 	<canvas id='cv' width = 600 height=500> </canvas><br>
-	<input id="input" value=1 type="range" min=1 max=20 step=1>
+	<input id="input" value=1 type="range" min=1 max=50 step=1>
 	<p id="inputVal">1 sample</p>
 	<script>
 		// Parameter : number of time random() is called
@@ -44,7 +44,7 @@
 
 			ctx.fillStyle='#F00';
 			for (i=0; i<width; i++) {
-			ctx.fillRect(i,500-slots[i], 10, slots[i]);
+			ctx.fillRect(i,500-slots[i] * 0.3, 10, slots[i] * 0.3);
 			}
 		}
 		runTest();
