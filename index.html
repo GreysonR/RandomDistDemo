@@ -7,7 +7,7 @@
 </head>
 <body>
 	<canvas id='cv' width = 600 height=500> </canvas><br>
-	<input id="input" value=1 type="range" min=1 max=50 step=1>
+	<input id="input" value=1 type="range" min=1 max=60 step=1>
 	<p id="inputVal">1 sample</p>
 	<script>
 		// Parameter : number of time random() is called
@@ -29,22 +29,20 @@
 			// fill slots
 			i=cnt;
 			while (i--) {
-			var  y1 = gaussianRand();
-			slots[Math.floor(y1*width)]+=1;
+				var  y1 = gaussianRand();
+				slots[Math.floor(y1*width)]+=1;
 			} 
 
 			function gaussianRand() {
-			var i=RandomCalls;
-			var res = 0;
-			while(i--) res+=Math.random();
-			return res/RandomCalls; 
+				var i=RandomCalls;
+				var res = 0;
+				while(i--) res+=Math.random();
+				return res/RandomCalls; 
 			}
-
-			// no p rotect
 
 			ctx.fillStyle='#F00';
 			for (i=0; i<width; i++) {
-			ctx.fillRect(i,500-slots[i] * 0.3, 10, slots[i] * 0.3);
+				ctx.fillRect(i,500-slots[i] * 0.3, 10, slots[i] * 0.3);
 			}
 		}
 		runTest();
